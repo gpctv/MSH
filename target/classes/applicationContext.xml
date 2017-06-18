@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+<bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:location="/WEB-INF/jdbc.properties" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+		<property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${jdbc.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+	</bean>
+	
+	<bean id="dataSource"
+        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+        p:driverClassName="${jdbc.driverClassName}"
+        p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
+        p:password="${jdbc.password}" />
+        
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- bean -->
+	<bean
+		id="SalesdiscountDAO" class="com.dao.SalesdiscountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+</bean>
+	<bean id="DiscountDAO" class="com.dao.DiscountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="IdDAO" class="com.dao.IdDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SalesitemDAO" class="com.dao.SalesitemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TransDAO" class="com.dao.TransDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ItemDAO" class="com.dao.ItemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PoskeyDAO" class="com.dao.PoskeyDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PoskeyBean" class="com.msh.model.PoskeyBean">
+		
+	</bean>
+	
+	<!-- Action -->
+	<bean id="Poskey" class="com.msh.action.PoskeyAction" scope="prototype">
+    </bean>
+	
+	<!-- Rest -->
+	<bean id="PoskeyRest" class="com.msh.rest.PoskeyRest" >
+    <property name="poskeyBizRest">
+			<ref bean="PoskeyBizRest" />
+		</property>
+    </bean>
+    <!-- Biz -->
+    <bean id="PoskeyBizRest" class="com.msh.biz.PoskeyBizRest">
+		 <property name="poskeyDAO">
+			<ref bean="PoskeyDAO" />
+		 </property>
+		 <property name="itemDAO">
+			<ref bean="ItemDAO" />
+		 </property>
+		 <property name="discountDAO">
+			<ref bean="DiscountDAO" />
+		 </property>
+    </bean>
+	</beans>
