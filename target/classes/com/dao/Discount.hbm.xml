@@ -17,16 +17,12 @@
             <column name="AMOUNT_DISCOUNT" precision="15" scale="4" />
         </property>
         <property name="nameDiscount" type="java.lang.String">
-            <column name="NAME_DISCOUNT" length="100" />
+            <column name="NAME_DISCOUNT" length="20" />
         </property>
-        <property name="enableDiscount" type="java.math.BigDecimal">
-            <column name="ENABLE_DISCOUNT" precision="38" scale="0" />
-        </property>
-        <property name="createdateDiscount" type="java.sql.Timestamp">
-            <column name="CREATEDATE_DISCOUNT" length="7" />
+        <property name="enableItem" type="java.math.BigDecimal">
+            <column name="ENABLE_ITEM" precision="38" scale="0" />
         </property>
     </class>
-    
     <sql-query name="discount.query.max">
       select nvl(max(id_discount),0)+1
        from msh.discount

@@ -28,7 +28,7 @@
 <![CDATA[
 select t.*,ROWNUM r
 from 
-(select  name_discount title,'poskey3' type,amount_discount discount,0 sales,enable_discount  isEnable,id_discount id
+(select  name_discount title,'poskey3' type,amount_discount discount,0 sales,enable_item  isEnable,id_discount id
 from msh.discount
 union
 select name_item title,'poskey' type,0 discount,amount_item sales,enable_item  isEnable,id_item id
