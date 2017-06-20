@@ -58,10 +58,11 @@ public class PoskeyBizRest {
 		    itemDAO.save(item);
 		}else{
 			discount.setAmountDiscount(poskeyBean.getDiscount().doubleValue());
-			discount.setEnableItem(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
+			discount.setEnableDiscount(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
 			discount.setIdDiscount(poskeyDAO.getMax(poskeyBean));
 			discount.setNameDiscount(poskeyBean.getTitle());
 			discount.setTypeDiscount("");
+			discount.setCreatedateDiscount(TimeStamp.getNowTimeStamp());
 			discountDAO.save(discount);
 			}
 	}
@@ -81,10 +82,11 @@ public class PoskeyBizRest {
 		    itemDAO.delete(item);
 		}else{
 			discount.setAmountDiscount(poskeyBean.getDiscount().doubleValue());
-			discount.setEnableItem(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
+			discount.setEnableDiscount(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
 			discount.setIdDiscount(poskeyBean.getSelfId());
 			discount.setNameDiscount(poskeyBean.getTitle());
 			discount.setTypeDiscount("");
+			discount.setCreatedateDiscount(TimeStamp.getNowTimeStamp());
 			discountDAO.delete(discount);
 		}
 	}
