@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 /**
  * Discount entity. @author MyEclipse Persistence Tools
@@ -14,7 +15,8 @@ public class Discount implements java.io.Serializable {
 	private String typeDiscount;
 	private Double amountDiscount;
 	private String nameDiscount;
-	private BigDecimal enableItem;
+	private BigDecimal enableDiscount;
+	private Timestamp createdateDiscount;
 
 	// Constructors
 
@@ -29,12 +31,14 @@ public class Discount implements java.io.Serializable {
 
 	/** full constructor */
 	public Discount(Long idDiscount, String typeDiscount,
-			Double amountDiscount, String nameDiscount, BigDecimal enableItem) {
+			Double amountDiscount, String nameDiscount,
+			BigDecimal enableDiscount, Timestamp createdateDiscount) {
 		this.idDiscount = idDiscount;
 		this.typeDiscount = typeDiscount;
 		this.amountDiscount = amountDiscount;
 		this.nameDiscount = nameDiscount;
-		this.enableItem = enableItem;
+		this.enableDiscount = enableDiscount;
+		this.createdateDiscount = createdateDiscount;
 	}
 
 	// Property accessors
@@ -71,12 +75,20 @@ public class Discount implements java.io.Serializable {
 		this.nameDiscount = nameDiscount;
 	}
 
-	public BigDecimal getEnableItem() {
-		return this.enableItem;
+	public BigDecimal getEnableDiscount() {
+		return this.enableDiscount;
 	}
 
-	public void setEnableItem(BigDecimal enableItem) {
-		this.enableItem = enableItem;
+	public void setEnableDiscount(BigDecimal enableDiscount) {
+		this.enableDiscount = enableDiscount;
+	}
+
+	public Timestamp getCreatedateDiscount() {
+		return this.createdateDiscount;
+	}
+
+	public void setCreatedateDiscount(Timestamp createdateDiscount) {
+		this.createdateDiscount = createdateDiscount;
 	}
 
 }
