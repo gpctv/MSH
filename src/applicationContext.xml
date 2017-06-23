@@ -78,8 +78,13 @@
 	<!-- Action -->
 	<bean id="Poskey" class="com.msh.action.PoskeyAction" scope="prototype">
     </bean>
+    
 	<bean id="Pos" class="com.msh.action.PosAction" scope="prototype">
+	<property name="posBiz">
+			<ref bean="PosBiz" />
+		</property>
 	</bean>
+	
 	<!-- Rest -->
 	<bean id="PoskeyRest" class="com.msh.rest.PoskeyRest" >
     <property name="poskeyBizRest">
@@ -92,6 +97,14 @@
 			<ref bean="PoskeyDAO" />
 		 </property>
 		 <property name="itemDAO">
+			<ref bean="ItemDAO" />
+		 </property>
+		 <property name="discountDAO">
+			<ref bean="DiscountDAO" />
+		 </property>
+    </bean>
+    <bean id="PosBiz" class="com.msh.biz.PosBiz">
+    <property name="itemDAO">
 			<ref bean="ItemDAO" />
 		 </property>
 		 <property name="discountDAO">
