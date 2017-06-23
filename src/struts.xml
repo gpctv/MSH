@@ -6,6 +6,10 @@
     <action name="poskey" class="Poskey">
         <result name="SUCCESS">/WEB-INF/view/poskey/poskey.jsp</result>
         </action>
+        <action name="pos" class="Pos">
+       <result name="SUCCESS">/WEB-INF/view/pos/pos.jsp</result>
+        </action>
+        
     <action name="poskeyQueryRest" class="PoskeyRest">
         <result type="json">  
             </result>
@@ -18,5 +22,6 @@
        <result type="json">  
             </result>
        </action>
+       
     </package>
 </struts>    

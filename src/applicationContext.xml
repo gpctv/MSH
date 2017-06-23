@@ -78,7 +78,8 @@
 	<!-- Action -->
 	<bean id="Poskey" class="com.msh.action.PoskeyAction" scope="prototype">
     </bean>
-	
+	<bean id="Pos" class="com.msh.action.PosAction" scope="prototype">
+	</bean>
 	<!-- Rest -->
 	<bean id="PoskeyRest" class="com.msh.rest.PoskeyRest" >
     <property name="poskeyBizRest">
