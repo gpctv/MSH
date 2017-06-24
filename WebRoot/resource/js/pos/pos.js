@@ -613,4 +613,9 @@ function permissionGroup(posKey,posKey2,poskey3){
 	$('.posKey3').prop('disabled',!poskey3);//功能鍵盤 disable
 	
 }
- 
+ /**
+  * 抓取本筆結帳資料
+  */
+function calResult(){
+	
+}

@@ -66,6 +66,7 @@ public class PosAction extends ActionSupport {
 		try{
 			getActionName();
 		this.itemKeys=getItemList();
+		this.discountKeys=getDiscountList();
 		return "SUCCESS";
 		}catch(Exception e){
 		log.error("ERROR:[#0],[#1]", e,e.getMessage());
@@ -75,6 +76,9 @@ public class PosAction extends ActionSupport {
 	}
 	private ArrayList<Item> getItemList(){
 		return posBiz.getItemKey();
+	}
+	private ArrayList<Discount> getDiscountList(){
+		return posBiz.getDiscountKey();
 	}
 	/**
 	 * 呼叫action name

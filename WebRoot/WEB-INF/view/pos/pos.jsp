@@ -49,17 +49,39 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
     <br><p  id="calMessage" style="word-wrap: break-word;"><b>總額:</b><b id="itemMessage"></b></p>
     <br><p  id="calMessage" style="word-wrap: break-word;"><b id="itemMessage2"></b></p>
     <table class="table table-striped">
+    <s:iterator value="itemKeys" var="item1" status="num">
+    	<s:if test="#num.first">
+    	<tr>
+    	</s:if>
+    	<td>
+        <button  keyId="item<s:property value="#item1.idItem"/>" value="<s:property value="#item1.amountItem"/>" class="posKey btn btn-default">
+			<s:property value="#item1.nameItem"/>
+        </button>
+         </td>
+         <s:if test="%{((#num.index+1) % 6) == 0}">
+         <tr> 
+    	</s:if>
+        <s:if test="#num.last">
+        </tr>
+        </s:if> 
+    </s:iterator>
+    <s:iterator value="discountKeys" var="discount" status="num">
+    <s:if test="#num.first">
+    	<tr>
+    	</s:if>
+    	<td>
+    	<button  keyId="discount<s:property value="discount.idDiscount"/>" value="<s:property value="#discount.amountDiscount"/>" name="discount" class="posKey3 btn btn-default">
+			<s:property value="#discount.nameDiscount"/>
+        </button>
+         </td>
+         <s:if test="%{((#num.index+1) % 6) == 0}">
+         <tr> 
+    	</s:if>
+        <s:if test="#num.last">
+        </tr>
+        </s:if> 
+    </s:iterator>
     <tr>
-    	<td><button keyId="item01" value="130" class="posKey btn btn-default">food1</button></td>
-        <td><button keyId="item02" value="130" class="posKey btn btn-default">food2</button></td>
-        <td><button keyId="item03" value="130" class="posKey btn btn-default">food3</button></td>
-        <td><button keyId="item04" value="130" class="posKey btn btn-default">food4</button></td>
-        <td><button keyId="item05" value="130" class="posKey btn btn-default">food5</button></td>
-        <td><button keyId="item06" value="130" class="posKey btn btn-default">food6</button></td>
-    </tr>
-    <tr>
-        <td><button keyId="discount1" value="0.2" name="discount" class="posKey3 btn btn-default">discount八折</button></td>
-        <td><button keyId="discount2" value="0.3" name="discount" class="posKey3 btn btn-default">discount七折</button></td>
         <td><button value="disappear" name="disappear" class="posKey3 btn btn-default">消除</button></td>
         <td><button value="result" name="result" class="posKey3 btn btn-default">結帳</button></td>
         <td><button value="clearAll" name="clearAll"class="posKey3 btn btn-default">clear All</button></td> 

@@ -22,6 +22,9 @@
        <result type="json">  
             </result>
        </action>
-       
+       <action name="posRest" class="PosRest">
+       <result type="json">  
+            </result>
+       </action>
     </package>
 </struts>    

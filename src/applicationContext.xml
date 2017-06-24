@@ -91,6 +91,9 @@
 			<ref bean="PoskeyBizRest" />
 		</property>
     </bean>
+    <bean id="PosRest" class="com.msh.rest.PosRest" >
+   
+   </bean>
     <!-- Biz -->
     <bean id="PoskeyBizRest" class="com.msh.biz.PoskeyBizRest">
 		 <property name="poskeyDAO">

@@ -5,6 +5,7 @@
 .posKey{
     height:100px;
     width:100px;
+    white-space:pre-wrap;
  }
  .posKey2{
     height:80px;
