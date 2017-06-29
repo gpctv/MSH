@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  已建立檔案 - 星期二-六月-20-2017   
+--  已建立檔案 - 星期五-六月-30-2017   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table SALESDISCOUNT
@@ -8,7 +8,7 @@
   CREATE TABLE "MSH"."SALESDISCOUNT" 
    (	"NAME_SALESDISCOUNT" VARCHAR2(100 BYTE), 
 	"RECEIPTNO_SALESDISCOUNT" VARCHAR2(20 BYTE), 
-	"AMOUNT_SALESDISCOUNT" NUMBER(15,4), 
+	"AMOUNT_SALESDISCOUNT" NUMBER(38,0), 
 	"ID_SALESDISCOUNT" NUMBER(*,0)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING

@@ -1,12 +1,12 @@
 --------------------------------------------------------
---  已建立檔案 - 星期二-六月-20-2017   
+--  已建立檔案 - 星期五-六月-30-2017   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table TRANS
 --------------------------------------------------------
 
   CREATE TABLE "MSH"."TRANS" 
-   (	"AMOUNT_TRANS" NUMBER(15,4), 
+   (	"AMOUNT_TRANS" NUMBER(20,0), 
 	"RECEIPTNO_TRANS" VARCHAR2(20 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
