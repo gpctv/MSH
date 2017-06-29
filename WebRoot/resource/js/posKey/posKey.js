@@ -13,7 +13,8 @@ $(document).ready(function () {
         actions:{
 			listAction:CONTEXT_PATH+"/poskeyQueryRest",
 			createAction:CONTEXT_PATH+"/poskeyInsertRest",
-			deleteAction:CONTEXT_PATH+"/poskeyDeleteRest"
+			deleteAction:CONTEXT_PATH+"/poskeyDeleteRest",
+			updateAction:CONTEXT_PATH+"/poskeyUpdateRest"
 		},
 		fields:{
 			 id:{
@@ -87,8 +88,14 @@ $(document).ready(function () {
 		formCreated:function(e,data){
 			keyNumOnly(data.form.find('input[name="sales"]'));
 			keyNumOnly(data.form.find('input[name="discount"]'));
-			data.form.find('input[name="sales"]').prop('disabled',false);
-			data.form.find('input[name="discount"]').prop('disabled',true);
+			if(data.form.find('select[name="type"]').val()=='poskey'){
+				data.form.find('input[name="sales"]').prop('disabled',false);
+				data.form.find('input[name="discount"]').prop('disabled',true);
+			}else{
+				data.form.find('input[name="sales"]').prop('disabled',true);
+				data.form.find('input[name="discount"]').prop('disabled',false);
+			}
+			
 			 //data.form.find('input[name="enable"]').prop('checked',true);
 			 data.form.find('input[name="enable"]').click();
 			 

@@ -32,7 +32,8 @@ from
 from msh.discount
 union
 select name_item title,'poskey' type,0 discount,amount_item sales,enable_item  isEnable,id_item id
-from msh.item) t
+from msh.item  ) t
+order by r
 ]]> 
 </sql-query>
 <sql-query name="item.query.max">

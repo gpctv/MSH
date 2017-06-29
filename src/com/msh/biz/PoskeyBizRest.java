@@ -46,7 +46,7 @@ public class PoskeyBizRest {
 	 * 設定儲存 POSKEY
 	 * @param poskeyBean
 	 */
-	public void setPoskey(PoskeyBean poskeyBean){
+	public PoskeyBean setPoskey(PoskeyBean poskeyBean){
 		Item item=new Item();
 		Discount discount=new Discount();
 		if(poskey.equals(poskeyBean.getType())){
@@ -56,6 +56,8 @@ public class PoskeyBizRest {
 		    item.setCreatedateItem(TimeStamp.getNowTimeStamp());
 		    item.setEnableItem(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
 		    itemDAO.save(item);
+		    poskeyBean.setSelfId(item.getIdItem());
+		    return poskeyBean;
 		}else{
 			discount.setAmountDiscount(poskeyBean.getDiscount().doubleValue());
 			discount.setEnableDiscount(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
@@ -64,6 +66,8 @@ public class PoskeyBizRest {
 			discount.setTypeDiscount("");
 			discount.setCreatedateDiscount(TimeStamp.getNowTimeStamp());
 			discountDAO.save(discount);
+			poskeyBean.setSelfId(discount.getIdDiscount());
+			return poskeyBean;
 			}
 	}
 	/**
@@ -88,6 +92,27 @@ public class PoskeyBizRest {
 			discount.setTypeDiscount("");
 			discount.setCreatedateDiscount(TimeStamp.getNowTimeStamp());
 			discountDAO.delete(discount);
+		}
+	}
+	
+	public void updatePoskey(PoskeyBean poskeyBean){
+		Item item=new Item();
+		Discount discount=new Discount();
+		if(poskey.equals(poskeyBean.getType())){
+			item.setNameItem(poskeyBean.getTitle());
+			item.setIdItem(poskeyBean.getSelfId());
+			item.setAmountItem(poskeyBean.getSales().longValue());
+		    item.setCreatedateItem(TimeStamp.getNowTimeStamp());
+		    item.setEnableItem(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
+		    itemDAO.attachDirty(item);
+		}else{
+			discount.setAmountDiscount(poskeyBean.getDiscount().doubleValue());
+			discount.setEnableDiscount(poskeyBean.getIsEnable()?new BigDecimal(1):new BigDecimal(0));
+			discount.setIdDiscount(poskeyBean.getSelfId());
+			discount.setNameDiscount(poskeyBean.getTitle());
+			discount.setTypeDiscount("");
+			discount.setCreatedateDiscount(TimeStamp.getNowTimeStamp());
+			discountDAO.attachDirty(discount);
 		}
 	}
 

@@ -42,7 +42,7 @@ function posKey(){
 					+'$'+$(this).val()+'('+num+')='+amount+'</td>');//設定文字amount
 			
 		}else{//未重複新增
-			$('#list tbody').append('<tr class="listItem" id="'+$(this).attr('keyId')+'" num="1" amount="'+$(this).val()+'"><td>'
+			$('#list tbody').append('<tr itemId="'+$(this).attr('itemId')+'" class="listItem" id="'+$(this).attr('keyId')+'" num="1" amount="'+$(this).val()+'"><td>'
 					+$(this).text()+'</td><td>'
 					+'$'+$(this).val()+''
 					+'</td></tr>');
@@ -74,6 +74,8 @@ function posKey(){
 				 posKey3='';
 				 //折扣乘1
 				 $('#disNum').text('1');
+				 $('#disNum').attr('disId','');
+				 $('#disNum').attr('disName','');
 				 permissionGroup(true,false, true);
 				 permission(true, false, false, false, true, true, false);
 				
@@ -91,6 +93,8 @@ function posKey(){
 				 permissionGroup(false,false, true);
 				 permission(false, false, false, false, true, true, false);
 				 $('#disNum').text(di2);
+				 $('#disNum').attr('disId',$(this).attr('disId'));
+				 $('#disNum').attr('disName',$(this).text());
 				 posKey3='discount';
 			}
 			
@@ -575,8 +579,36 @@ function reRow(){
 	return rowNum;
 	
 }
-
+/**
+ * 傳至SERVER
+ * @returns {Boolean}
+ */
 function sendToServer(){
+	var items=calResult();
+	var less=calLess();
+	var discount=[];
+	discount.push({
+			nameSalesdiscount:$('#disNum').attr('disname'),
+			amountSalesdiscount:$('#disNum').text(),
+			idSalesdiscount:$('#disNum').attr('disid'),
+			receiptnoSalesdiscount:''
+	});
+ 
+	console.log(items);
+	console.log(less);
+	console.log(discount);
+	var ob={salesItemList:items,discountList:discount,lessList:less};
+	console.log(JSON.stringify(ob ));
+	$.ajax({
+	    url: CONTEXT_PATH+"/posRest",
+	    data:  JSON.stringify(ob ),
+	    contentType: "application/json; charset=utf-8",
+	    type: 'POST',
+	    dataType: 'json',
+	    success: function (res) {
+	         console.log('success');
+	    }
+	});
 	return true;
 }
 
@@ -617,5 +649,40 @@ function permissionGroup(posKey,posKey2,poskey3){
   * 抓取本筆結帳資料
   */
 function calResult(){
+	var items=[]; 
 	
+	$('#list  tbody > tr').each(function(e,tr){
+		 if($(tr).attr('id').includes('item')){
+			items.push({
+				idSalesitem:$(tr).attr('itemid'),
+				itemSalesitem:$(tr).find('td:eq(0)').text(),
+				countSalesitem:$(tr).attr('num'),
+				amountSalesitem:$(tr).attr('amount'),
+				receiptnoSalesitem:''
+			});
+		}
+		
+	});
+	 
+	return items;
+}
+/**
+ * 計算折讓
+ * @returns {___anonymous19684_19692}
+ */
+function calLess(){
+	var less=[];
+	$('#list  tbody > tr').each(function(e,tr){
+		console.log($(tr).attr('amount'));
+		if($(tr).attr('id').includes('less')){
+			less.push({
+				idSalesdiscount:'0',
+				amountSalesdiscount:$(tr).attr('amount'),
+				nameSalesdiscount:'折讓',
+				receiptnoSalesdiscount:''
+			});
+		}
+		
+	});
+	return less;
 }

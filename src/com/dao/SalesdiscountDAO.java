@@ -29,7 +29,6 @@ public class SalesdiscountDAO {
 			.getLogger(SalesdiscountDAO.class);
 	// property constants
 	public static final String NAME_SALESDISCOUNT = "nameSalesdiscount";
-	public static final String AMOUNT_SALESDISCOUNT = "amountSalesdiscount";
 
 	private SessionFactory sessionFactory;
 
@@ -111,10 +110,6 @@ public class SalesdiscountDAO {
 
 	public List findByNameSalesdiscount(Object nameSalesdiscount) {
 		return findByProperty(NAME_SALESDISCOUNT, nameSalesdiscount);
-	}
-
-	public List findByAmountSalesdiscount(Object amountSalesdiscount) {
-		return findByProperty(AMOUNT_SALESDISCOUNT, amountSalesdiscount);
 	}
 
 	public List findAll() {

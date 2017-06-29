@@ -12,7 +12,7 @@ public class Salesdiscount implements java.io.Serializable {
 
 	private String receiptnoSalesdiscount;
 	private String nameSalesdiscount;
-	private Double amountSalesdiscount;
+	private BigDecimal amountSalesdiscount;
 	private BigDecimal idSalesdiscount;
 
 	// Constructors
@@ -28,7 +28,7 @@ public class Salesdiscount implements java.io.Serializable {
 
 	/** full constructor */
 	public Salesdiscount(String receiptnoSalesdiscount,
-			String nameSalesdiscount, Double amountSalesdiscount,
+			String nameSalesdiscount, BigDecimal amountSalesdiscount,
 			BigDecimal idSalesdiscount) {
 		this.receiptnoSalesdiscount = receiptnoSalesdiscount;
 		this.nameSalesdiscount = nameSalesdiscount;
@@ -54,11 +54,11 @@ public class Salesdiscount implements java.io.Serializable {
 		this.nameSalesdiscount = nameSalesdiscount;
 	}
 
-	public Double getAmountSalesdiscount() {
+	public BigDecimal getAmountSalesdiscount() {
 		return this.amountSalesdiscount;
 	}
 
-	public void setAmountSalesdiscount(Double amountSalesdiscount) {
+	public void setAmountSalesdiscount(BigDecimal amountSalesdiscount) {
 		this.amountSalesdiscount = amountSalesdiscount;
 	}
 

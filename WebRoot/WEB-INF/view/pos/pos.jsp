@@ -29,7 +29,7 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
 <body>
 <div class="container">
 	<div class="row" id="postMessage" style="visibility:hidden">
-    <div class="col-md-12 alert alert-success text-center"> <strong id="message">Success!</strong> </div>    
+    <div id="messageStyle" class="col-md-12 alert alert-success text-center"> <strong id="message">Success!</strong> </div>    
     </div>
 <div class="row">
 <div class="col-md-4"> 
@@ -48,13 +48,14 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
     <p  id="calMessage" style="word-wrap: break-word;"><b id="itemMessage3"></b></p>  
     <br><p  id="calMessage" style="word-wrap: break-word;"><b>總額:</b><b id="itemMessage"></b></p>
     <br><p  id="calMessage" style="word-wrap: break-word;"><b id="itemMessage2"></b></p>
+    <!-- pos key food -->
     <table class="table table-striped">
     <s:iterator value="itemKeys" var="item1" status="num">
     	<s:if test="#num.first">
     	<tr>
     	</s:if>
     	<td>
-        <button  keyId="item<s:property value="#item1.idItem"/>" value="<s:property value="#item1.amountItem"/>" class="posKey btn btn-default">
+        <button itemId="<s:property value="#item1.idItem"/>"  keyId="item<s:property value="#item1.idItem"/>" value="<s:property value="#item1.amountItem"/>" class="posKey btn btn-default">
 			<s:property value="#item1.nameItem"/>
         </button>
          </td>
@@ -65,12 +66,13 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
         </tr>
         </s:if> 
     </s:iterator>
+    <!-- pos key discount -->
     <s:iterator value="discountKeys" var="discount" status="num">
     <s:if test="#num.first">
     	<tr>
     	</s:if>
     	<td>
-    	<button  keyId="discount<s:property value="discount.idDiscount"/>" value="<s:property value="#discount.amountDiscount"/>" name="discount" class="posKey3 btn btn-default">
+    	<button disName="" disId="<s:property value="#discount.idDiscount"/>"  keyId="discount<s:property value="#discount.idDiscount"/>" value="<s:property value="#discount.amountDiscount"/>" name="discount" class="posKey3 btn btn-default">
 			<s:property value="#discount.nameDiscount"/>
         </button>
          </td>
@@ -114,7 +116,7 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
     </table> 
     </div>
 </div>	
-<div style="visibility:hidden" id="disNum">
+<div style="visibility:hidden" id="disNum" disId="" disname="">
 1
 </div>
 

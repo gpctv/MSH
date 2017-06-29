@@ -9,7 +9,6 @@ import com.msh.biz.PoskeyBizRest;
 import com.msh.model.PoskeyBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
  
@@ -136,9 +135,9 @@ public class PoskeyRest extends ActionSupport {
 				 break;
 	    	 case "poskeyInsertRest":
 	    		this.record= setPoskeyBean();
-	 			this.poskeyBizRest.setPoskey(this.record);//insertDB
+	    		PoskeyBean poskeybean=this.poskeyBizRest.setPoskey(this.record);//insertDB
 	 			poskeyList=poskeyBizRest.getPoskeyList();
-	 			this.record.setSelfId(poskeyList.get(this.record.getId()).getSelfId());
+	 			this.record=poskeybean;
 	 			this.setRecords(poskeyList);
 	 			this.setResult("OK");
 	 			this.action="";
@@ -150,6 +149,14 @@ public class PoskeyRest extends ActionSupport {
 	    		 poskeyBizRest.deletePoskey(deletePoskey);//deleteDB
 	    		 this.setResult("OK");
 	    		 this.action="";
+	    		 break;
+	    	 case "poskeyUpdateRest":
+	    		 this.record=setPoskeyBean();
+	    		 poskeyList=poskeyBizRest.getPoskeyList();
+	    		 this.record.setSelfId(poskeyList.get(this.id).getSelfId()) ;
+	    		 
+	    		 this.poskeyBizRest.updatePoskey(this.record);
+	    		 this.setResult("OK");
 	    		 break;
 	    	 } 
 		 return super.execute();
@@ -187,7 +194,7 @@ public class PoskeyRest extends ActionSupport {
 		 }else{
 			 this.message="title null";
 		 }
-		
+		 
 		 poskeyBean.setType(this.type);
 		 return poskeyBean;
 	 }
