@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -26,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransDAO {
 	private static final Logger log = LoggerFactory.getLogger(TransDAO.class);
 	// property constants
-	public static final String AMOUNT_TRANS = "amountTrans";
 
 	private SessionFactory sessionFactory;
 
@@ -103,10 +104,6 @@ public class TransDAO {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByAmountTrans(Object amountTrans) {
-		return findByProperty(AMOUNT_TRANS, amountTrans);
 	}
 
 	public List findAll() {

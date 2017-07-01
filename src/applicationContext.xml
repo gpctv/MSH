@@ -37,6 +37,10 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<!-- bean -->
 	<bean
+		id="TransBean" class="com.dao.Trans">
+		 
+    </bean>
+	<bean
 		id="SalesdiscountDAO" class="com.dao.SalesdiscountDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -81,10 +85,23 @@
 		
 	</bean>
 	
+	<bean id="SaleslessDAO" class="com.dao.SaleslessDAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean>
+    
+	<bean id="TransCustomDAO" class="com.dao.TransCustomDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
 	<!-- Action -->
 	<bean id="Poskey" class="com.msh.action.PoskeyAction" scope="prototype">
     </bean>
-    
+    <bean id="Trans" class="com.msh.action.TransAction" scope="prototype">
+    </bean>
 	<bean id="Pos" class="com.msh.action.PosAction" scope="prototype">
 	<property name="posBiz">
 			<ref bean="PosBiz" />
@@ -102,6 +119,11 @@
 			<ref bean="PosRestBiz" />
 		 </property>
    </bean>
+    <bean id="TransRest" class="com.msh.rest.TransRest" >
+    <property name="transRestBiz">
+			<ref bean="TransRestBiz" />
+		 </property>
+    </bean>
     <!-- Biz -->
     <bean id="PoskeyBizRest" class="com.msh.biz.PoskeyBizRest">
 		 <property name="poskeyDAO">
@@ -140,9 +162,17 @@
 			<ref bean="BatchDAO" />
 		 </property>
     </bean>
+    
+    <bean id="TransRestBiz" class="com.msh.biz.TransRestBiz">
+    <property name="trans">
+			<ref bean="TransBean" />
+		 </property>
+		 <property name="transDAO">
+			<ref bean="TransDAO" />
+		 </property>
+		 <property name="transCuDAO">
+			<ref bean="TransCustomDAO" />
+		 </property>
+    </bean>
 
-    <bean id="SaleslessDAO" class="com.dao.SaleslessDAO">
-    	<property name="sessionFactory">
-    		<ref bean="sessionFactory" />
-    	</property>
-    </bean></beans>
+    </beans>

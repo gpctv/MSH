@@ -10,8 +10,47 @@
             <column name="RECEIPTNO_TRANS" length="20" />
             <generator class="assigned" />
         </id>
-        <property name="amountTrans" type="java.lang.Double">
-            <column name="AMOUNT_TRANS" precision="15" scale="4" />
+        <property name="amountTrans" type="java.math.BigDecimal">
+            <column name="AMOUNT_TRANS" precision="20" scale="0" />
+        </property>
+        <property name="dateTrans" type="java.sql.Timestamp">
+            <column name="DATE_TRANS" length="7" />
         </property>
     </class>
+    <sql-query name="trans.query.range">
+    <![CDATA[
+    select *
+    from trans 
+    where date_trans  between  
+    to_date(:sDate,'YYYYMMDDHH24MISS') 
+    and 
+    to_date(:eDate,'YYYYMMDDHH24MISS')
+    
+    ]]>
+    <return alias="Trans" class="com.dao.Trans"></return>
+    </sql-query>
+    
+    <sql-query name="trans.query.detail">
+    <![CDATA[
+     select t.*,trans.DATE_TRANS
+    from(
+    select *
+    from 
+    (select RECEIPTNO_SALESITEM receipt,  ITEM_SALESITEM name1,AMOUNT_SALESITEM amount
+    from SALESITEM 
+    where RECEIPTNO_SALESITEM ='20170702001914876')
+    union
+    (select receiptno_salesdiscount receipt,name_salesdiscount name1,amount_salesdiscount amount
+    from salesDiscount
+    where receiptno_salesdiscount ='20170702001914876')
+    union
+    (select receiptno_salesless receipt,name_salesless name1,amount_salesless amount
+    from salesless
+    where receiptno_salesless='20170702001914876')
+    ) t,trans
+    where trans.RECEIPTNO_TRANS='20170702001914876';
+    
+    ]]>
+     
+    </sql-query>
 </hibernate-mapping>

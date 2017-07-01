@@ -9,6 +9,11 @@
         <action name="pos" class="Pos">
        <result name="SUCCESS">/WEB-INF/view/pos/pos.jsp</result>
         </action>
+      <action name="trans" class="Trans">
+      <result name="SUCCESS">/WEB-INF/view/trans/trans.jsp</result>
+        
+      </action>
+      
         
     <action name="poskeyQueryRest" class="PoskeyRest">
         <result type="json">  
@@ -34,5 +39,10 @@
        <result type="json">  
             </result>
        </action>
+       
+       <action name="transRest" class="TransRest">
+       <result type="json">  
+            </result>
+      </action>
     </package>
 </struts>    

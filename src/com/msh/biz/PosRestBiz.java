@@ -15,6 +15,7 @@ import com.dao.SalesitemDAO;
 import com.dao.Salesless;
 import com.dao.Trans;
 import com.dao.TransDAO;
+import com.msh.api.TimeStamp;
 import com.msh.model.LessBean;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
@@ -134,7 +135,8 @@ public class PosRestBiz {
 			 l1.add(l);
 		 }
 		 trans.setReceiptnoTrans(invoice);
-		 trans.setAmountTrans(calResult(s1, d1, l1).doubleValue());
+		 trans.setAmountTrans(calResult(s1, d1, l1));
+		 trans.setDateTrans(TimeStamp.getNowTimeStamp());
 	     saveTran(s1, d1, l1, trans);
 	     log.info("[#0]", "交易儲存DB");
 	 }

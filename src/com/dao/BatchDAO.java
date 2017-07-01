@@ -54,14 +54,12 @@ public class BatchDAO {
 	        	l.setIdSalesless(count);
 	            	 session.save(l);
 	        	}
-	            
 	            session.flush();
 	            session.clear();
-	            
-	            session.save(trans);
-		        session.flush();
-		        session.clear();
 	        }
+	        session.save(trans);
+	        session.flush();
+	        session.clear();
 		}catch(Exception e){
 			log.error("batchDAO",e.getMessage(),e);
 		}finally{
