@@ -12,6 +12,7 @@
 		<mapping resource="com/dao/Salesitem.hbm.xml" />
 		<mapping resource="com/dao/Trans.hbm.xml" />
 		<mapping resource="com/dao/Item.hbm.xml" />
+		<mapping resource="com/dao/Salesless.hbm.xml" />
 
 	</session-factory>
 

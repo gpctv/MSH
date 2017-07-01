@@ -58,7 +58,7 @@ function posKey(){
 		if($(this).attr('name')=='discount'){ 
 
 			$('.listItem').removeAttr('style');//listItem 移掉
-			 $('[list="listItem"]').removeAttr('style')//減項移掉
+			 $('[list="listItem"]').removeAttr('style');//減項移掉
 			 
 			var tempAmount=0;
 			var cAmount=0; 
@@ -74,8 +74,8 @@ function posKey(){
 				 posKey3='';
 				 //折扣乘1
 				 $('#disNum').text('1');
-				 $('#disNum').attr('disId','');
-				 $('#disNum').attr('disName','');
+				 $('#disNum').attr('disId','0');
+				 $('#disNum').attr('disName','無');
 				 permissionGroup(true,false, true);
 				 permission(true, false, false, false, true, true, false);
 				
@@ -125,7 +125,7 @@ function posKey(){
 		//結帳
 		if($(this).attr('name')=='result'){
 			$('.listItem').removeAttr('style');//listItem 移掉
-			 $('[list="listItem"]').removeAttr('style')//減項移掉
+			 $('[list="listItem"]').removeAttr('style');//減項移掉
 			 
 			if($(this).hasClass('btn-info')){
 				permissionGroup(true,false,true);
@@ -156,10 +156,13 @@ function posKey(){
 			 $('#itemMessage2').text(''); 
 			 $('#itemMessage').text(reCal());
 			 $('#postMessage').css('visibility','hidden');
+			 $('#postMessage2').css('visibility','hidden');
 			 $('[name="discount"]').removeClass('btn-info');
 			 $('#disNum').text('1');//折扣預設為1
+			 $('#disNum').attr('disid','0');
+			 $('#disNum').attr('disname','無');
 				$('.listItem').removeAttr('style');//listItem 移掉
-				 $('[list="listItem"]').removeAttr('style')//減項移掉
+				 $('[list="listItem"]').removeAttr('style');//減項移掉
 				 
 		}
 	 
@@ -451,7 +454,7 @@ function posKey(){
 		 case 'sure':
 			 //LIST顏色移除
 			 $('.listItem').removeAttr('style');//listItem 移掉
-			 $('[list="listItem"]').removeAttr('style')//減項移掉
+			 $('[list="listItem"]').removeAttr('style');//減項移掉
 			 if(posKey3=='less'){
 				 $('[name="less"]').removeClass('btn-info');//取消反白
 				 total=total-parseInt(numKey); 
@@ -520,10 +523,7 @@ function posKey(){
 				 var num=numKey; //客人給的金額 
 				 var totalAmount=parseFloat($('#itemMessage').text());//消費金額
 				 var extraDollar=num-totalAmount;
-				 if(sendToServer()){
-					 $('#itemMessage2').text('資料上傳成功');
-					 $('#postMessage').removeAttr('style');
-				 }
+				 sendToServer();
 				 if(extraDollar<=0){
 				  $('#itemMessage3').html('<p style="color:red;">'+extraDollar+'</p>');
 				 }else{
@@ -531,6 +531,8 @@ function posKey(){
 				 } 
 				 permissionGroup(false,false,false);
 				 permission(false,false,false,false,false,true,false);
+				
+				
 			 }
 			  posKey3="";
 			 break;
@@ -544,7 +546,7 @@ function posKey(){
 		 if(jQuery.isEmptyObject($(this).attr('style'))){
 			 $('[name="disappear"]').prop('disabled',false);
 			 $('.listItem').removeAttr('style');//listItem 移掉
-			 $('[list="listItem"]').removeAttr('style')//減項移掉
+			 $('[list="listItem"]').removeAttr('style');//減項移掉
 			 $(this).attr('style','background-color:#b0c4de;'); 
 			 selectItem=$(this).attr('id');
 		 }else{
@@ -587,9 +589,11 @@ function sendToServer(){
 	var items=calResult();
 	var less=calLess();
 	var discount=[];
+	var boo=false;
+	var s=parseFloat($('#disNum').text());
 	discount.push({
 			nameSalesdiscount:$('#disNum').attr('disname'),
-			amountSalesdiscount:$('#disNum').text(),
+			amountSalesdiscount:String(s),
 			idSalesdiscount:$('#disNum').attr('disid'),
 			receiptnoSalesdiscount:''
 	});
@@ -606,10 +610,21 @@ function sendToServer(){
 	    type: 'POST',
 	    dataType: 'json',
 	    success: function (res) {
-	         console.log('success');
+	    	console.log(res);
+	    	//等待上傳SERVER完畢後  
+	    	if(res.Message=='success'){
+				 $('#itemMessage2').text('資料上傳成功');
+				 $('#postMessage').removeAttr('style'); 
+	    	}else{
+	    		$('#itemMessage2').text(res.Message); 
+	    	}
+	    	 
+	    },
+	    error:function(){
+	    	 $('#itemMessage2').text('資料上傳失敗');
+			 $('#postMessage2').removeAttr('style');
 	    }
 	});
-	return true;
 }
 
 /**
@@ -672,14 +687,16 @@ function calResult(){
  */
 function calLess(){
 	var less=[];
+	 
+	
 	$('#list  tbody > tr').each(function(e,tr){
 		console.log($(tr).attr('amount'));
 		if($(tr).attr('id').includes('less')){
 			less.push({
-				idSalesdiscount:'0',
-				amountSalesdiscount:$(tr).attr('amount'),
-				nameSalesdiscount:'折讓',
-				receiptnoSalesdiscount:''
+				idSalesless:'0',
+				amountSalesless:$(tr).attr('amount'),
+				nameSalesless:'折讓',
+				receiptnoSalesless:''
 			});
 		}
 		

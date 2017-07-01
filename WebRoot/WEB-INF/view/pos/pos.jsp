@@ -28,8 +28,11 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
 </head>
 <body>
 <div class="container">
-	<div class="row" id="postMessage" style="visibility:hidden">
+	<div class="row" id="postMessage" style="display:none">
     <div id="messageStyle" class="col-md-12 alert alert-success text-center"> <strong id="message">Success!</strong> </div>    
+    </div>
+    <div class="row" id="postMessage2" style="display:none">
+    <div id="messageStyle" class="col-md-12 alert alert-danger text-center"> <strong id="message">error!</strong> </div>    
     </div>
 <div class="row">
 <div class="col-md-4"> 
@@ -116,7 +119,7 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
     </table> 
     </div>
 </div>	
-<div style="visibility:hidden" id="disNum" disId="" disname="">
+<div style="visibility:hidden" id="disNum" disId="0" disname="無">
 1
 </div>
 

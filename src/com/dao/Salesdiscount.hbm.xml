@@ -6,18 +6,19 @@
 -->
 <hibernate-mapping>
     <class name="com.dao.Salesdiscount" table="SALESDISCOUNT" schema="MSH">
-        <id name="receiptnoSalesdiscount" type="java.lang.String">
-            <column name="RECEIPTNO_SALESDISCOUNT" length="20" />
-            <generator class="assigned" />
-        </id>
+        <composite-id   >
+            <key-property name="receiptnoSalesdiscount" type="java.lang.String">
+                <column name="RECEIPTNO_SALESDISCOUNT" length="20" />
+            </key-property>
+            <key-property name="idSalesdiscount" type="java.math.BigDecimal">
+                <column name="ID_SALESDISCOUNT" precision="38" scale="0" />
+            </key-property>
+        </composite-id>
         <property name="nameSalesdiscount" type="java.lang.String">
             <column name="NAME_SALESDISCOUNT" length="100" />
         </property>
-        <property name="amountSalesdiscount" type="java.math.BigDecimal">
-            <column name="AMOUNT_SALESDISCOUNT" precision="38" scale="0" />
-        </property>
-        <property name="idSalesdiscount" type="java.math.BigDecimal">
-            <column name="ID_SALESDISCOUNT" precision="38" scale="0" />
+        <property name="amountSalesdiscount" type="java.lang.Double">
+            <column name="AMOUNT_SALESDISCOUNT" precision="15" scale="4" />
         </property>
     </class>
 </hibernate-mapping>

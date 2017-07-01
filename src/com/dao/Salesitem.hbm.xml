@@ -6,15 +6,16 @@
 -->
 <hibernate-mapping>
     <class name="com.dao.Salesitem" table="SALESITEM" schema="MSH">
-        <id name="receiptnoSalesitem" type="java.lang.String">
-            <column name="RECEIPTNO_SALESITEM" length="10" />
-            <generator class="assigned" />
-        </id>
-        <property name="idSalesitem" type="java.lang.Long">
-            <column name="ID_SALESITEM" precision="15" scale="0" />
-        </property>
+        <composite-id >
+            <key-property name="receiptnoSalesitem" type="java.lang.String">
+                <column name="RECEIPTNO_SALESITEM" length="20" />
+            </key-property>
+            <key-property name="idSalesitem" type="java.lang.Long">
+                <column name="ID_SALESITEM" precision="15" scale="0" />
+            </key-property>
+        </composite-id>
         <property name="itemSalesitem" type="java.lang.String">
-            <column name="ITEM_SALESITEM" length="20" />
+            <column name="ITEM_SALESITEM" length="100" />
         </property>
         <property name="countSalesitem" type="java.lang.Long">
             <column name="COUNT_SALESITEM" precision="15" scale="0" />

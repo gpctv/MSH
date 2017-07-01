@@ -1,6 +1,5 @@
 package com.dao;
 
-import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -14,22 +13,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * Salesitem entities. Transaction control of the save(), update() and delete()
+ * Salesless entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.dao.Salesitem
+ * @see com.dao.Salesless
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class SalesitemDAO {
+public class SaleslessDAO {
 	private static final Logger log = LoggerFactory
-			.getLogger(SalesitemDAO.class);
+			.getLogger(SaleslessDAO.class);
 	// property constants
-	public static final String ITEM_SALESITEM = "itemSalesitem";
-	public static final String COUNT_SALESITEM = "countSalesitem";
+	public static final String NAME_SALESLESS = "nameSalesless";
+	public static final String AMOUNT_SALESLESS = "amountSalesless";
 
 	private SessionFactory sessionFactory;
 
@@ -45,8 +44,8 @@ public class SalesitemDAO {
 		// do nothing
 	}
 
-	public void save(Salesitem transientInstance) {
-		log.debug("saving Salesitem instance");
+	public void save(Salesless transientInstance) {
+		log.debug("saving Salesless instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -56,8 +55,8 @@ public class SalesitemDAO {
 		}
 	}
 
-	public void delete(Salesitem persistentInstance) {
-		log.debug("deleting Salesitem instance");
+	public void delete(Salesless persistentInstance) {
+		log.debug("deleting Salesless instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -67,13 +66,13 @@ public class SalesitemDAO {
 		}
 	}
 
-	
+	 
 
-	public List findByExample(Salesitem instance) {
-		log.debug("finding Salesitem instance by example");
+	public List findByExample(Salesless instance) {
+		log.debug("finding Salesless instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.dao.Salesitem")
+					.createCriteria("com.dao.Salesless")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -85,10 +84,10 @@ public class SalesitemDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Salesitem instance with property: " + propertyName
+		log.debug("finding Salesless instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Salesitem as model where model."
+			String queryString = "from Salesless as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -99,18 +98,18 @@ public class SalesitemDAO {
 		}
 	}
 
-	public List findByItemSalesitem(Object itemSalesitem) {
-		return findByProperty(ITEM_SALESITEM, itemSalesitem);
+	public List findByNameSalesless(Object nameSalesless) {
+		return findByProperty(NAME_SALESLESS, nameSalesless);
 	}
 
-	public List findByCountSalesitem(Object countSalesitem) {
-		return findByProperty(COUNT_SALESITEM, countSalesitem);
+	public List findByAmountSalesless(Object amountSalesless) {
+		return findByProperty(AMOUNT_SALESLESS, amountSalesless);
 	}
 
 	public List findAll() {
-		log.debug("finding all Salesitem instances");
+		log.debug("finding all Salesless instances");
 		try {
-			String queryString = "from Salesitem";
+			String queryString = "from Salesless";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -119,10 +118,10 @@ public class SalesitemDAO {
 		}
 	}
 
-	public Salesitem merge(Salesitem detachedInstance) {
-		log.debug("merging Salesitem instance");
+	public Salesless merge(Salesless detachedInstance) {
+		log.debug("merging Salesless instance");
 		try {
-			Salesitem result = (Salesitem) getCurrentSession().merge(
+			Salesless result = (Salesless) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -132,8 +131,8 @@ public class SalesitemDAO {
 		}
 	}
 
-	public void attachDirty(Salesitem instance) {
-		log.debug("attaching dirty Salesitem instance");
+	public void attachDirty(Salesless instance) {
+		log.debug("attaching dirty Salesless instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -143,8 +142,8 @@ public class SalesitemDAO {
 		}
 	}
 
-	public void attachClean(Salesitem instance) {
-		log.debug("attaching clean Salesitem instance");
+	public void attachClean(Salesless instance) {
+		log.debug("attaching clean Salesless instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -155,7 +154,7 @@ public class SalesitemDAO {
 		}
 	}
 
-	public static SalesitemDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (SalesitemDAO) ctx.getBean("SalesitemDAO");
+	public static SaleslessDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (SaleslessDAO) ctx.getBean("SaleslessDAO");
 	}
 }

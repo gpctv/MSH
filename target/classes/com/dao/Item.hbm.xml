@@ -23,7 +23,6 @@
             <column name="AMOUNT_ITEM" precision="15" scale="0" />
         </property>
     </class>
-    
     <sql-query name="item.query.itemUnionDiscount">
 <![CDATA[
 select t.*,ROWNUM r
@@ -42,5 +41,4 @@ select nvl(max(id_item),0)+1
 from msh.item  
 ]]> 
 </sql-query>
- 
 </hibernate-mapping>

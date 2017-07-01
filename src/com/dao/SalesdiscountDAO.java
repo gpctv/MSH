@@ -66,17 +66,7 @@ public class SalesdiscountDAO {
 		}
 	}
 
-	public Salesdiscount findById(java.lang.String id) {
-		log.debug("getting Salesdiscount instance with id: " + id);
-		try {
-			Salesdiscount instance = (Salesdiscount) getCurrentSession().get(
-					"com.dao.Salesdiscount", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
+	
 
 	public List findByExample(Salesdiscount instance) {
 		log.debug("finding Salesdiscount instance by example");

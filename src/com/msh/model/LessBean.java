@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class LessBean {
 	private String receiptnoSalesdiscount;
 	private String nameSalesdiscount;
-	private BigDecimal amountSalesdiscount;
+	private Double amountSalesdiscount;
 	private BigDecimal idSalesdiscount;
 	public String getReceiptnoSalesdiscount() {
 		return receiptnoSalesdiscount;
@@ -19,10 +19,10 @@ public class LessBean {
 	public void setNameSalesdiscount(String nameSalesdiscount) {
 		this.nameSalesdiscount = nameSalesdiscount;
 	}
-	public BigDecimal getAmountSalesdiscount() {
+	public Double getAmountSalesdiscount() {
 		return amountSalesdiscount;
 	}
-	public void setAmountSalesdiscount(BigDecimal amountSalesdiscount) {
+	public void setAmountSalesdiscount(Double amountSalesdiscount) {
 		this.amountSalesdiscount = amountSalesdiscount;
 	}
 	public BigDecimal getIdSalesdiscount() {

@@ -1,13 +1,13 @@
 package com.msh.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.json.annotations.JSON;
 
-import com.dao.Item;
 import com.dao.Salesdiscount;
 import com.dao.Salesitem;
+import com.dao.Salesless;
+import com.msh.biz.PosRestBiz;
 import com.msh.model.LessBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -27,8 +27,12 @@ public class PosRest extends ActionSupport {
 	private static final long serialVersionUID = 1L;
     private List <Salesitem> salesItemList;
     private List <Salesdiscount> discountList;
-    private List <LessBean> lessList;
-    
+    private List <Salesless> lessList;
+    private PosRestBiz posRestBiz; 
+    @JSON(name="Message")
+	public String getMessage() {
+		return message;
+	}
 	/**
 	 * 設定LOG
 	 */
@@ -43,10 +47,10 @@ public class PosRest extends ActionSupport {
 		log.info("actionName:[#0]", action);
 	}
     
-	  public List<LessBean> getLessList() {
+	  public List<Salesless> getLessList() {
 		return lessList;
 	}
-	public void setLessList(List<LessBean> lessList) {
+	public void setLessList(List<Salesless> lessList) {
 		this.lessList = lessList;
 	}
 	public List <Salesitem> getSalesItemList() {
@@ -71,29 +75,36 @@ public class PosRest extends ActionSupport {
 		this.discountList = discountList;
 	}
 
+    
 
-
+	public PosRestBiz getPosRestBiz() {
+		return posRestBiz;
+	}
+	public void setPosRestBiz(PosRestBiz posRestBiz) {
+		this.posRestBiz = posRestBiz;
+	}
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		try{
-			if(null!=salesItemList){
-				for(int i=0;i<this.salesItemList.size();i++){
-					log.info("[#0]", salesItemList.get(i).getItemSalesitem().trim());
-				}
-			}
-			if(null!=discountList){
-				log.info("[#0]",this.discountList.get(0).getNameSalesdiscount());
-				 
-			}
-		
 		getActionName();
-		  
+		try{
+	    posRestBiz.trans(salesItemList, discountList, lessList);
+		this.message="success";
+		
+		clear();
 		return super.execute();
 		}catch(Exception e){
+			clear();
 			this.action="";
 	    	 log.error("[#0],[#1]",e, e.getMessage() );
+	    	 this.message="error";
 	    	 return "ERROR";
 		}
+	}
+	
+	private void clear(){
+		salesItemList.clear();
+		discountList.clear();
+		lessList.clear();
 	}
 }
