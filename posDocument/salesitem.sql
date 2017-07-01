@@ -1,8 +1,11 @@
 --------------------------------------------------------
 --  已建立檔案 - 星期六-七月-01-2017   
+<<<<<<< HEAD:posDocument/salesitem.sql
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table SALESITEM
+=======
+>>>>>>> origin/master:salesitem.sql
 --------------------------------------------------------
 
   CREATE TABLE "MSH"."SALESITEM" 
@@ -16,9 +19,15 @@
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
+<<<<<<< HEAD:posDocument/salesitem.sql
 --------------------------------------------------------
 --  DDL for Index SALESITEM_PK1
 --------------------------------------------------------
+=======
+--------------------------------------------------------
+--  DDL for Index SALESITEM_PK1
+--------------------------------------------------------
+>>>>>>> origin/master:salesitem.sql
 
   CREATE UNIQUE INDEX "MSH"."SALESITEM_PK1" ON "MSH"."SALESITEM" ("RECEIPTNO_SALESITEM", "ID_SALESITEM") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 

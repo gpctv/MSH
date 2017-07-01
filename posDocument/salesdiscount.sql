@@ -1,8 +1,11 @@
 --------------------------------------------------------
 --  已建立檔案 - 星期六-七月-01-2017   
+<<<<<<< HEAD:posDocument/salesdiscount.sql
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table SALESDISCOUNT
+=======
+>>>>>>> origin/master:salesdiscount.sql
 --------------------------------------------------------
 
   CREATE TABLE "MSH"."SALESDISCOUNT" 
@@ -15,9 +18,15 @@
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
+<<<<<<< HEAD:posDocument/salesdiscount.sql
 --------------------------------------------------------
 --  DDL for Index SALESDISCOUNT_PK
 --------------------------------------------------------
+=======
+--------------------------------------------------------
+--  DDL for Index SALESDISCOUNT_PK
+--------------------------------------------------------
+>>>>>>> origin/master:salesdiscount.sql
 
   CREATE UNIQUE INDEX "MSH"."SALESDISCOUNT_PK" ON "MSH"."SALESDISCOUNT" ("RECEIPTNO_SALESDISCOUNT", "ID_SALESDISCOUNT") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
