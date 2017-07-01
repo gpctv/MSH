@@ -1,16 +1,14 @@
 --------------------------------------------------------
---  已建立檔案 - 星期六-七月-01-2017   
-<<<<<<< HEAD:posDocument/trans.sql
+--  已建立檔案 - 星期日-七月-02-2017   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table TRANS
-=======
->>>>>>> origin/master:trans.sql
 --------------------------------------------------------
 
   CREATE TABLE "MSH"."TRANS" 
    (	"AMOUNT_TRANS" NUMBER(20,0), 
-	"RECEIPTNO_TRANS" VARCHAR2(20 BYTE)
+	"RECEIPTNO_TRANS" VARCHAR2(20 BYTE), 
+	"DATE_TRANS" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
