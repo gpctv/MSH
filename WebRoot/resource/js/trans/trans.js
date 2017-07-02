@@ -25,6 +25,7 @@ $(document).ready(function () {
 			            dataType: 'json',
 			            success: function (data) {
 			                $dfd.resolve(data);
+			                $('#sum').html('<b>交易總金額:'+data.Sum+'</b>');
 			            },
 			            error: function () {
 			                $dfd.reject();

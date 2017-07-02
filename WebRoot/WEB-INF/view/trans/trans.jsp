@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
      pageEncoding="UTF-8"%>
+     <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,7 +50,7 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
 			</table>
 		</div>
 		<br>
-		<div class="row">交易金額:</div>
+		<div class="row"><span id="sum" style="color:blue"></span></div>
  <div class="row" style="width: 70% ; margin:0 auto;"  >
  <div id="PersonTableContainer"></div>
 </div>

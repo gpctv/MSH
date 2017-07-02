@@ -1,6 +1,7 @@
 package com.msh.biz;
 
-import java.util.HashMap;
+import java.math.BigDecimal;
+import java.util.LinkedHashMap;
 
 import com.dao.Trans;
 import com.dao.TransCustomDAO;
@@ -40,8 +41,13 @@ public class TransRestBiz {
     public TransRestBiz(){
     	log=LoggerFactory.getLogger(PosRestBiz.class);
     }
-	
-    public HashMap<String,Trans> getTrans(String sDate,String eDate){
+	/**
+	 * 查詢期間銷售 沒日期時搜尋今日
+	 * @param sDate
+	 * @param eDate
+	 * @return
+	 */
+    public  LinkedHashMap<String,Trans> getTrans(String sDate,String eDate){
     	if(sDate.isEmpty() && eDate.isEmpty()){
     	return 	getTodayTrans();
     	}else if(sDate.isEmpty() || eDate.isEmpty()){
@@ -54,18 +60,62 @@ public class TransRestBiz {
     	}
     	return getRangeTrans(sDate,eDate);
     }
-    
-     private  HashMap<String,Trans>  getTodayTrans(){
+    /**
+     * 今日銷售
+     * @return
+     */
+     private   LinkedHashMap<String,Trans>  getTodayTrans(){
     	String today= TimeStamp.getNowString();
-    	 HashMap<String,Trans> t=transCuDAO.getTrans(today+"000000", today+"235959");
+    	 LinkedHashMap<String,Trans> t=transCuDAO.getTrans(today+"000000", today+"235959");
      log.info("[#0]", "trans get");
      return t;
      }
-   
-     private HashMap<String,Trans> getRangeTrans(String sDate,String eDate){
-    	 HashMap<String,Trans> t=transCuDAO.getTrans(sDate+"000000", eDate+"235959");
+   /**
+    * 期間銷售
+    * @param sDate
+    * @param eDate
+    * @return
+    */
+     private  LinkedHashMap<String,Trans> getRangeTrans(String sDate,String eDate){
+    	 LinkedHashMap<String,Trans> t=transCuDAO.getTrans(sDate+"000000", eDate+"235959");
          log.info("[#0]", "trans get");
          return t;
+     }
+     
+     public BigDecimal getSum(String sDate,String eDate){
+    	 if(sDate.isEmpty() && eDate.isEmpty()){
+    	    	return 	getTodaySum();
+    	    	}else if(sDate.isEmpty() || eDate.isEmpty()){
+    	    		if(sDate.isEmpty()){
+    	    			return	getRangeSum(eDate,eDate);
+    	    		}
+    	    		if(eDate.isEmpty()){
+    	    			return getRangeSum(sDate,sDate);
+    	    		}
+    	    	}
+    	    	return getRangeSum(sDate,eDate);
+     }
+     /**
+      * 回傳總額(當日)
+      * @return
+      */
+     private  BigDecimal getTodaySum(){
+     	String today= TimeStamp.getNowString();
+     	 BigDecimal t=transCuDAO.getSum(today+"000000", today+"235959");
+      log.info("[#0]", "trans get");
+      return t;
+      }
+     /**
+      * 回傳總額區間
+      * @param sDate
+      * @param eDate
+      * @return
+      */
+     private BigDecimal getRangeSum(String sDate,String eDate){
+     
+     	 BigDecimal t=transCuDAO.getSum(sDate+"000000", eDate+"235959");
+      log.info("[#0]", "trans get");
+      return t;
      }
    
 }

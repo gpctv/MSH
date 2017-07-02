@@ -1,6 +1,8 @@
 package com.msh.rest;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.apache.struts2.json.annotations.JSON;
 
@@ -22,7 +24,14 @@ public class TransRest extends ActionSupport {
 	private TransRestBiz transRestBiz;
 	private String sDate;
 	private String eDate;
-	
+	private BigDecimal sum;
+	@JSON(name="Sum")
+	public BigDecimal getSum() {
+		return sum;
+	}
+	public void setSum(BigDecimal sum) {
+		this.sum = sum;
+	}
 	public String getSDate() {
 		return sDate;
 	}
@@ -85,7 +94,8 @@ public class TransRest extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		getActionName();
-		HashMap<String,Trans>  table=transRestBiz.getTrans(sDate,eDate);
+		 LinkedHashMap<String,Trans>  table=transRestBiz.getTrans(sDate,eDate);
+		this.sum=transRestBiz.getSum(sDate, eDate);
 		this.setRecords(table);
 		this.setResult("OK");
 		return super.execute();

@@ -25,10 +25,24 @@
     to_date(:sDate,'YYYYMMDDHH24MISS') 
     and 
     to_date(:eDate,'YYYYMMDDHH24MISS')
-    
+     order by date_trans asc
     ]]>
     <return alias="Trans" class="com.dao.Trans"></return>
     </sql-query>
+    
+    <sql-query name="trans.query.sum">
+    <![CDATA[
+    select sum(amount_trans)
+    from trans 
+    where date_trans  between  
+    to_date(:sDate,'YYYYMMDDHH24MISS') 
+    and 
+    to_date(:eDate,'YYYYMMDDHH24MISS')
+    
+    ]]>
+     
+    </sql-query>
+    
     
     <sql-query name="trans.query.detail">
     <![CDATA[

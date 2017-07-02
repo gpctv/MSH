@@ -1,9 +1,8 @@
 package com.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.math.BigDecimal;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -20,18 +19,38 @@ public class TransCustomDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	public HashMap<String,Trans> getTrans(String sDate,String eDate){
-		HashMap<String,Trans> transList=new HashMap<String,Trans>();
+	/**
+	 * 查詢期間銷售
+	 * @param sDate
+	 * @param eDate
+	 * @return
+	 */
+	public  LinkedHashMap<String,Trans> getTrans(String sDate,String eDate){
+		 LinkedHashMap<String,Trans> transList=new  LinkedHashMap<String,Trans>();
 		Query query =this.sessionFactory.getCurrentSession()
 				.getNamedQuery("trans.query.range");
 		query.setParameter("sDate", sDate);
 		query.setParameter("eDate", eDate);
-		Iterator iter=query.list().iterator();
+		Iterator<?> iter=query.list().iterator();
 		while(iter.hasNext()){
 			Trans trans=(Trans)iter.next();
 			transList.put(trans.getReceiptnoTrans(), trans);
 		}
+		log.info("回傳LinkedHashMap");
 		return transList;
+	}
+	/**
+	 * 回傳總額
+	 * @param sDate
+	 * @param eDate
+	 * @return
+	 */
+	public BigDecimal getSum(String sDate,String eDate){
+		 Query query =this.sessionFactory.getCurrentSession()
+				.getNamedQuery("trans.query.sum");
+		query.setParameter("sDate", sDate);
+		query.setParameter("eDate", eDate);
+		BigDecimal sum=(BigDecimal)query.uniqueResult();
+		return sum;
 	}
 }
