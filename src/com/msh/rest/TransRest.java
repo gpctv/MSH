@@ -93,11 +93,15 @@ public class TransRest extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		try{
 		getActionName();
 		 LinkedHashMap<String,Trans>  table=transRestBiz.getTrans(sDate,eDate);
 		this.sum=transRestBiz.getSum(sDate, eDate);
 		this.setRecords(table);
 		this.setResult("OK");
+		}catch(Exception e){
+			log.error("TransRest [#0]",e,e.getMessage());
+		}
 		return super.execute();
 	}
 	

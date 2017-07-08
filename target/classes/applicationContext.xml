@@ -96,11 +96,15 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+	<bean id="TransDetailBean" class="com.msh.model.TransDetailBean">
+		 
+	</bean>
 	<!-- Action -->
 	<bean id="Poskey" class="com.msh.action.PoskeyAction" scope="prototype">
     </bean>
     <bean id="Trans" class="com.msh.action.TransAction" scope="prototype">
+    </bean>
+    <bean id="TransDetail" class="com.msh.action.TransDetailAction" scope="prototype">
     </bean>
 	<bean id="Pos" class="com.msh.action.PosAction" scope="prototype">
 	<property name="posBiz">
@@ -122,6 +126,11 @@
     <bean id="TransRest" class="com.msh.rest.TransRest" >
     <property name="transRestBiz">
 			<ref bean="TransRestBiz" />
+		 </property>
+    </bean>
+    <bean id="TransDetailRest" class="com.msh.rest.TransDetailRest" >
+    <property name="transDetailRestBiz">
+			<ref bean="TransDetailRestBiz" />
 		 </property>
     </bean>
     <!-- Biz -->
@@ -174,5 +183,16 @@
 			<ref bean="TransCustomDAO" />
 		 </property>
     </bean>
-
+    
+    <bean id="TransDetailRestBiz" class="com.msh.biz.TransDetailRestBiz">
+    <property name="transCuDAO">
+			<ref bean="TransCustomDAO" />
+		 </property>
+		 <property name="transDAO">
+			<ref bean="TransDAO" />
+		 </property>
+		 <property name="transDetailBean">
+			<ref bean="TransDetailBean" />
+		 </property>
+    </bean>
     </beans>

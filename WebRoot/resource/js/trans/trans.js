@@ -42,7 +42,7 @@ $(document).ready(function () {
 				key:true,
 				list:true,
 				display:function(d){
-					return '<a href="/Struts2Test/transDetail?id='+d.record.receiptnoTrans+'" target="_blank">'+d.record.receiptnoTrans+'</a>';
+					return '<a href="'+CONTEXT_PATH+'/transDetail?id='+d.record.receiptnoTrans+'" target="_blank">'+d.record.receiptnoTrans+'</a>';
 				}
 			},
 			dateTrans:{

@@ -46,23 +46,23 @@
     
     <sql-query name="trans.query.detail">
     <![CDATA[
-     select t.*,trans.DATE_TRANS
+     select t.*,trans.DATE_TRANS,rownum
     from(
     select *
     from 
     (select RECEIPTNO_SALESITEM receipt,  ITEM_SALESITEM name1,AMOUNT_SALESITEM amount
     from SALESITEM 
-    where RECEIPTNO_SALESITEM ='20170702001914876')
+    where RECEIPTNO_SALESITEM =:receiptNo)
     union
     (select receiptno_salesdiscount receipt,name_salesdiscount name1,amount_salesdiscount amount
     from salesDiscount
-    where receiptno_salesdiscount ='20170702001914876')
+    where receiptno_salesdiscount =:receiptNo)
     union
     (select receiptno_salesless receipt,name_salesless name1,amount_salesless amount
     from salesless
-    where receiptno_salesless='20170702001914876')
+    where receiptno_salesless=:receiptNo)
     ) t,trans
-    where trans.RECEIPTNO_TRANS='20170702001914876';
+    where trans.RECEIPTNO_TRANS=:receiptNo
     
     ]]>
      
