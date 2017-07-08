@@ -50,7 +50,7 @@
     from(
     select *
     from 
-    (select RECEIPTNO_SALESITEM receipt,  ITEM_SALESITEM name1,AMOUNT_SALESITEM amount
+    (select RECEIPTNO_SALESITEM receipt,  trim(ITEM_SALESITEM) || ' X '||count_salesItem name1,AMOUNT_SALESITEM amount
     from SALESITEM 
     where RECEIPTNO_SALESITEM =:receiptNo)
     union
