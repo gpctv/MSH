@@ -12,6 +12,8 @@ $(document).ready(function () {
 	    endDate:"0d"
 	    
 	});
+	$('#sDate').val( getToday() );
+	$('#eDate').val( getToday() );
 	clickSearch();
 	$('#PersonTableContainer').jtable({
 		title:'transaction',
@@ -70,8 +72,8 @@ function getToday(){
 	var month = d.getMonth()+1;
 	var day = d.getDate();
 
-	var output = d.getFullYear() + '/' +
-	(month<10 ? '0' : '') + month + '/' +
+	var output = d.getFullYear()  +
+	(month<10 ? '0' : '') + month  +
 	(day<10 ? '0' : '') + day;
 	return output;
 }

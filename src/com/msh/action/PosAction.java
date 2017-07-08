@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.dao.Discount;
 import com.dao.Item;
 import com.msh.biz.PosBiz;
-import com.msh.rest.PoskeyRest;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
@@ -14,7 +13,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 public class PosAction extends ActionSupport {
 
 	/**
-	 * 
+	 * POS  
 	 */
 	private static final long serialVersionUID = 1L;
     private ArrayList<Item> itemKeys;

@@ -26,7 +26,7 @@
             <column name="CREATEDATE_DISCOUNT" length="7" />
         </property>
     </class>
-    
+    <!-- 獲取最大值加一ID -->
     <sql-query name="discount.query.max">
       select nvl(max(id_discount),0)+1
        from msh.discount

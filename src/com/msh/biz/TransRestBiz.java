@@ -7,11 +7,8 @@ import com.dao.Trans;
 import com.dao.TransCustomDAO;
 import com.dao.TransDAO;
 import com.msh.api.TimeStamp;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 public class TransRestBiz {
-	private static Logger log; //紀錄
 	private Trans trans;//設定交易BEAN
 	private TransDAO transDAO;
 	private TransCustomDAO transCuDAO;
@@ -35,12 +32,7 @@ public class TransRestBiz {
 	public void setTransDAO(TransDAO transDAO) {
 		this.transDAO = transDAO;
 	}
-	/**
-	 * 設定LOG
-	 */
-    public TransRestBiz(){
-    	log=LoggerFactory.getLogger(PosRestBiz.class);
-    }
+	
 	/**
 	 * 查詢期間銷售 沒日期時搜尋今日
 	 * @param sDate
@@ -67,7 +59,7 @@ public class TransRestBiz {
      private   LinkedHashMap<String,Trans>  getTodayTrans(){
     	String today= TimeStamp.getNowString();
     	 LinkedHashMap<String,Trans> t=transCuDAO.getTrans(today+"000000", today+"235959");
-     log.info("[#0]", "trans get");
+    
      return t;
      }
    /**
@@ -78,10 +70,15 @@ public class TransRestBiz {
     */
      private  LinkedHashMap<String,Trans> getRangeTrans(String sDate,String eDate){
     	 LinkedHashMap<String,Trans> t=transCuDAO.getTrans(sDate+"000000", eDate+"235959");
-         log.info("[#0]", "trans get");
+         
          return t;
      }
-     
+     /**
+      * 總額
+      * @param sDate
+      * @param eDate
+      * @return
+      */
      public BigDecimal getSum(String sDate,String eDate){
     	 if(sDate.isEmpty() && eDate.isEmpty()){
     	    	return 	getTodaySum();
@@ -102,7 +99,7 @@ public class TransRestBiz {
      private  BigDecimal getTodaySum(){
      	String today= TimeStamp.getNowString();
      	 BigDecimal t=transCuDAO.getSum(today+"000000", today+"235959");
-      log.info("[#0]", "trans get");
+     
       return t;
       }
      /**
@@ -114,7 +111,7 @@ public class TransRestBiz {
      private BigDecimal getRangeSum(String sDate,String eDate){
      
      	 BigDecimal t=transCuDAO.getSum(sDate+"000000", eDate+"235959");
-      log.info("[#0]", "trans get");
+      
       return t;
      }
    

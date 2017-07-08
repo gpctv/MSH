@@ -17,6 +17,8 @@
             <column name="DATE_TRANS" length="7" />
         </property>
     </class>
+    
+    <!-- 交易明細日期區間 -->
     <sql-query name="trans.query.range">
     <![CDATA[
     select *
@@ -29,7 +31,7 @@
     ]]>
     <return alias="Trans" class="com.dao.Trans"></return>
     </sql-query>
-    
+    <!-- 交易總和 -->
     <sql-query name="trans.query.sum">
     <![CDATA[
     select sum(amount_trans)
@@ -43,7 +45,7 @@
      
     </sql-query>
     
-    
+    <!-- 交易明細 -->
     <sql-query name="trans.query.detail">
     <![CDATA[
      select t.*,trans.DATE_TRANS,rownum

@@ -8,7 +8,6 @@ import com.dao.Salesdiscount;
 import com.dao.Salesitem;
 import com.dao.Salesless;
 import com.msh.biz.PosRestBiz;
-import com.msh.model.LessBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
@@ -20,8 +19,7 @@ public class PosRest extends ActionSupport {
 	 * 
 	 */
 	
-	private static Logger log; //紀錄
-	private String action; //判斷此ACTION 名稱 
+	private static Logger log; //紀錄 
 	private String message; //錯誤時訊息
 	
 	private static final long serialVersionUID = 1L;
@@ -43,7 +41,7 @@ public class PosRest extends ActionSupport {
 	 * 呼叫action name
 	 */
 	private void getActionName(){
-		action=ActionContext.getContext().getName(); 
+	String	action=ActionContext.getContext().getName(); 
 		log.info("actionName:[#0]", action);
 	}
     
@@ -94,8 +92,7 @@ public class PosRest extends ActionSupport {
 		clear();
 		return super.execute();
 		}catch(Exception e){
-			clear();
-			this.action="";
+			clear(); 
 	    	 log.error("[#0],[#1]",e, e.getMessage() );
 	    	 this.message="error";
 	    	 return "ERROR";

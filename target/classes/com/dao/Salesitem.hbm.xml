@@ -24,4 +24,20 @@
             <column name="AMOUNT_SALESITEM" precision="38" scale="0" />
         </property>
     </class>
+    <!-- 查詢 商品銷售數量-->
+    <sql-query name="salesitem.query.salesitemCount">
+    <![CDATA[
+    select a.*, name_item,id_item,rownum
+from item inner join 
+(select id_salesitem,sum(count_salesitem) num
+from salesitem  inner join 
+trans
+on salesitem.RECEIPTNO_SALESITEM=trans.RECEIPTNO_TRANS
+where date_trans  between  to_date(:sDate,'YYYYMMDDHH24MISS') and  to_date(:eDate,'YYYYMMDDHH24MISS')
+group by id_salesitem) a
+on id_item=id_salesitem
+    
+       ]]>
+     
+    </sql-query>
 </hibernate-mapping>

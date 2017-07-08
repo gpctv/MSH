@@ -9,9 +9,11 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.msh.model.LessBean;
-
+/**
+ * POS 資料回傳
+ * @author Stan
+ *
+ */
 public class BatchDAO {
 	private static final Logger log = LoggerFactory
 			.getLogger(BatchDAO.class);
@@ -23,10 +25,20 @@ public class BatchDAO {
 		this.sessionFactory = sessionFactory;
 		
 	} 
+	/**
+	 * 開啟連線
+	 */
 	private void turnSession(){
 		this.session=sessionFactory.openSession();
 		 tx = session.beginTransaction();
 	}
+	/**
+	 * 批次儲存
+	 * @param salesItemList
+	 * @param discountList
+	 * @param lessList
+	 * @param trans
+	 */
 	@Transactional
 	public void save(List <Salesitem> salesItemList,
 			List <Salesdiscount> discountList,

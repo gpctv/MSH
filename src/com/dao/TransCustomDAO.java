@@ -13,6 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.msh.model.TransDetailBean;
+
+/**
+ * 自訂商品交易查詢
+ * @author Stan
+ *
+ */
 @Transactional
 public class TransCustomDAO {
 	private static final Logger log = LoggerFactory.getLogger(TransDAO.class);

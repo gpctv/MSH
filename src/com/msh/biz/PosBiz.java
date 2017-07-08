@@ -2,7 +2,6 @@ package com.msh.biz;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.dao.Discount;
 import com.dao.DiscountDAO;
@@ -41,7 +40,10 @@ public class PosBiz {
 		  
 	return itemList;
 	}
-	
+	/**
+	 * 獲取全部DISCOUNT KEY項目
+	 * @return
+	 */
 	public ArrayList<Discount> getDiscountKey(){
 		Discount discount=new Discount();
 		discount.setEnableDiscount(new BigDecimal("1"));

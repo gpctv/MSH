@@ -8,14 +8,14 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.msh.biz.TransDetailRestBiz;
 import com.msh.model.TransDetailBean;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 public class TransDetailRest extends ActionSupport {
 	private static final long serialVersionUID = 1L;
-	private static Logger log; //紀錄
-	private String action; //判斷此ACTION 名稱 
+	private static Logger log; //紀錄 
 	private String message; //錯誤時訊息
 	private HashMap<String,TransDetailBean>  records; //前端資料
 	private BigDecimal sum;
@@ -74,6 +74,7 @@ public class TransDetailRest extends ActionSupport {
 		// TODO Auto-generated method stub
 		log.info("create [#0]", "transDetail");
 		try{
+			getActionName();
 		 LinkedHashMap<String, TransDetailBean> table=transDetailRestBiz.getDetail(receiptNo);
 		this.setRecords(table );  
 		this.setSum(transDetailRestBiz.detailSum(receiptNo));
@@ -83,4 +84,11 @@ public class TransDetailRest extends ActionSupport {
 		}
 		return super.execute();
 	}
+	 /**
+		 * 呼叫action name
+		 */
+		private void getActionName(){
+		String	action=ActionContext.getContext().getName(); 
+			log.info("actionName:[#0]", action);
+		}
 }

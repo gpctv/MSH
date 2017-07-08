@@ -16,23 +16,14 @@ import com.dao.Salesless;
 import com.dao.Trans;
 import com.dao.TransDAO;
 import com.msh.api.TimeStamp;
-import com.msh.model.LessBean;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 public class PosRestBiz {
-	private static Logger log; //紀錄
 	private IdDAO idDao; 
 	private SalesdiscountDAO salesdiscountDAO;
 	private SalesitemDAO salesitemDAO;
 	private TransDAO transDAO;
 	private BatchDAO batchDAO;
-	/**
-	 * 設定LOG
-	 */
-    public PosRestBiz(){
-    	log=LoggerFactory.getLogger(PosRestBiz.class);
-    }
+	
 	public BatchDAO getBatchDAO() {
 		return batchDAO;
 	}
@@ -138,6 +129,5 @@ public class PosRestBiz {
 		 trans.setAmountTrans(calResult(s1, d1, l1));
 		 trans.setDateTrans(TimeStamp.getNowTimeStamp());
 	     saveTran(s1, d1, l1, trans);
-	     log.info("[#0]", "交易儲存DB");
 	 }
 }

@@ -7,11 +7,8 @@ import com.dao.Trans;
 import com.dao.TransCustomDAO;
 import com.dao.TransDAO;
 import com.msh.model.TransDetailBean;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
-public class TransDetailRestBiz {
-	private static Logger log; //紀錄
+public class TransDetailRestBiz { 
 	private TransDetailBean transDetailBean;
 	private TransCustomDAO transCuDAO;
 	private TransDAO transDAO;
@@ -34,12 +31,7 @@ public class TransDetailRestBiz {
 	public void setTransCuDAO(TransCustomDAO transCuDAO) {
 		this.transCuDAO = transCuDAO;
 	}
-	/**
-	 * 設定LOG
-	 */
-    public TransDetailRestBiz(){
-    	log=LoggerFactory.getLogger(TransDetailRestBiz.class);
-    }
+	 
 	/**
 	 * 獲得DETAIL TABLE
 	 * @param receiptNo
@@ -54,7 +46,7 @@ public class TransDetailRestBiz {
      * @return
      */
     public BigDecimal detailSum(String receiptNo){
-    	log.info("加總");
+    	 
     	Trans trans=transDAO.findById(receiptNo);
     	return trans.getAmountTrans();
     }

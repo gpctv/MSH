@@ -3,37 +3,58 @@
 <struts>
  <package name="MSH" namespace="/" extends="struts-default,json-default">
     
+    <!-- Action -->
+    
+    <!-- 首頁 -->
+     <action name="index" class="INDEX">
+        <result name="SUCCESS">/index.jsp</result>
+        </action>
+        <!-- POSKEY畫面 -->
     <action name="poskey" class="Poskey">
         <result name="SUCCESS">/WEB-INF/view/poskey/poskey.jsp</result>
         </action>
+        <!-- POS畫面 -->
         <action name="pos" class="Pos">
        <result name="SUCCESS">/WEB-INF/view/pos/pos.jsp</result>
         </action>
+        <!-- 交易查詢畫面 -->
       <action name="trans" class="Trans">
       <result name="SUCCESS">/WEB-INF/view/trans/trans.jsp</result>
         
       </action>
+      <!-- 交易明細畫面 -->
       <action name="transDetail" class="TransDetail">
       <result name="SUCCESS">/WEB-INF/view/trans/transDetail.jsp</result>
         
       </action>
+      <!-- 商品銷售量統計畫面 -->
+        <action name="salesItemCount" class="SalesItemCountAction">
+      <result name="SUCCESS">/WEB-INF/view/itemSales/itemSales.jsp</result>
         
+      </action>
+      
+      <!-- JSON -->
+        <!-- POSKEY 查詢-->
     <action name="poskeyQueryRest" class="PoskeyRest">
         <result type="json">  
             </result>
        </action>
+       <!-- POSKEY 新增-->
        <action name="poskeyInsertRest" class="PoskeyRest">
        <result type="json">  
             </result>
        </action>
+       <!-- POSKEY 刪除-->
        <action name="poskeyDeleteRest" class="PoskeyRest">
        <result type="json">  
             </result>
        </action>
+       <!-- POSKEY 更新-->
        <action name="poskeyUpdateRest" class="PoskeyRest">
        <result type="json">  
             </result>
        </action>
+       <!-- POS 回傳資料-->
        <action name="posRest" class="PosRest">
        <interceptor-ref name="defaultStack"/>
          <interceptor-ref name="json">
@@ -42,15 +63,20 @@
        <result type="json">  
             </result>
        </action>
-       
+       <!--交易查詢-->
        <action name="transRest" class="TransRest">
        <result type="json">  
             </result>
       </action>
+       <!--交易明細查詢-->
        <action name="transDetailRest" class="TransDetailRest">
        <result type="json">  
             </result>
       </action>
-      
+      <!--商品銷售數量查詢-->
+      <action name="salesItemRest" class="SalesItemRest">
+       <result type="json">  
+            </result>
+      </action>
     </package>
 </struts>    

@@ -35,6 +35,7 @@
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<!-- bean -->
 	<bean
 		id="TransBean" class="com.dao.Trans">
@@ -99,7 +100,14 @@
 	<bean id="TransDetailBean" class="com.msh.model.TransDetailBean">
 		 
 	</bean>
+	<bean id="SalesItemCountDAO" class="com.dao.SalesItemCountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	<!-- Action -->
+	<bean id="INDEX" class="com.msh.action.IndexAction" scope="prototype">
+    </bean>
 	<bean id="Poskey" class="com.msh.action.PoskeyAction" scope="prototype">
     </bean>
     <bean id="Trans" class="com.msh.action.TransAction" scope="prototype">
@@ -111,7 +119,9 @@
 			<ref bean="PosBiz" />
 		</property>
 	</bean>
-	
+	<bean id="SalesItemCountAction" class="com.msh.action.SalesItemCountAction" scope="prototype">
+    </bean>
+    
 	<!-- Rest -->
 	<bean id="PoskeyRest" class="com.msh.rest.PoskeyRest" >
     <property name="poskeyBizRest">
@@ -133,6 +143,12 @@
 			<ref bean="TransDetailRestBiz" />
 		 </property>
     </bean>
+   <bean id="SalesItemRest" class="com.msh.rest.SalesItemRest" >
+    <property name="salesItemCountRestBiz">
+			<ref bean="SalesItemCountRestBiz" />
+		 </property>
+    </bean>
+    
     <!-- Biz -->
     <bean id="PoskeyBizRest" class="com.msh.biz.PoskeyBizRest">
 		 <property name="poskeyDAO">
@@ -193,6 +209,12 @@
 		 </property>
 		 <property name="transDetailBean">
 			<ref bean="TransDetailBean" />
+		 </property>
+    </bean>
+    
+     <bean id="SalesItemCountRestBiz" class="com.msh.biz.SalesItemCountRestBiz" >
+     <property name="salesItemCountDAO">
+			<ref bean="SalesItemCountDAO" />
 		 </property>
     </bean>
     </beans>

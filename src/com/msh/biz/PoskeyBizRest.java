@@ -1,8 +1,6 @@
 package com.msh.biz;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import com.dao.Discount;
@@ -12,8 +10,6 @@ import com.dao.ItemDAO;
 import com.dao.PoskeyDAO;
 import com.msh.api.TimeStamp;
 import com.msh.model.PoskeyBean;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
 /**
  * PoskeyBiz
  * @author Stan
@@ -24,7 +20,6 @@ public class PoskeyBizRest {
 	private PoskeyDAO poskeyDAO;
 	private ItemDAO itemDAO;
 	private DiscountDAO discountDAO;
-	private static Logger log=LoggerFactory.getLogger(PoskeyBizRest.class); 
 	public void setPoskeyDAO(PoskeyDAO poskeyDAO){
 		this.poskeyDAO=poskeyDAO;
 	}
@@ -39,7 +34,7 @@ public class PoskeyBizRest {
      * @return
      */
 	public  HashMap<String,PoskeyBean> getPoskeyList(){
-	 
+		
 		 return poskeyDAO.getAll();
 	}
 	/**
@@ -94,7 +89,10 @@ public class PoskeyBizRest {
 			discountDAO.delete(discount);
 		}
 	}
-	
+	/**
+	 * 修改POSKEY
+	 * @param poskeyBean
+	 */
 	public void updatePoskey(PoskeyBean poskeyBean){
 		Item item=new Item();
 		Discount discount=new Discount();

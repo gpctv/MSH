@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class TransAction extends ActionSupport {
 
 	/**
-	 * 
+	 * 交易查詢
 	 */
 	private static final long serialVersionUID = 1L;
 

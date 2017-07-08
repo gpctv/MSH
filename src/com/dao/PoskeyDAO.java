@@ -11,7 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.msh.model.PoskeyBean;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
-
+/**
+ *組成自訂 POS KEY TABLE DAO
+ * @author Stan
+ *
+ */
 @Transactional
 public class PoskeyDAO {
 	private static final Logger log = LoggerFactory.getLogger(PoskeyDAO.class);
@@ -44,6 +48,7 @@ public class PoskeyDAO {
 			poskeyBean.setType(o[1].toString());
 			poskeyList.put (poskeyBean.getId(),poskeyBean);
 		}
+		log.info("get all db item union discount");
 		return poskeyList;
 		
 	}

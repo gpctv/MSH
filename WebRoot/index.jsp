@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="BIG5"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,6 +21,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+  <table align="center">
+  <tr>
+  <td align="center">
+  <a href="<%=basePath%>pos">POS</a>  
+  </td>
+  <tr>
+  <td align="center">
+  <a href="<%=basePath%>poskey">POSKEY</a>  
+  </td>
+  <tr>
+   <td align="center">
+  <a href="<%=basePath%>trans">交易紀錄</a>  
+  </td>
+  <tr>
+   <td align="center">
+  <a href="<%=basePath%>salesItemCount">商品統計</a>  
+  </td>
+  </table>
+    
   </body>
 </html>

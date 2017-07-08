@@ -23,6 +23,8 @@
             <column name="AMOUNT_ITEM" precision="15" scale="0" />
         </property>
     </class>
+    
+    <!-- 查詢折扣及商品品項 -->
     <sql-query name="item.query.itemUnionDiscount">
 <![CDATA[
 select t.*,ROWNUM r
@@ -35,6 +37,7 @@ from msh.item  ) t
 order by r
 ]]> 
 </sql-query>
+<!-- 查詢商品ID最大值加一 -->
 <sql-query name="item.query.max">
 <![CDATA[
 select nvl(max(id_item),0)+1
