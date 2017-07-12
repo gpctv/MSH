@@ -1,4 +1,4 @@
-# POS 系統
+﻿# POS 系統
 #### pos key 設定
 ![poskey1](https://github.com/gpctv/MSH/blob/master/posDocument/pos1.jpg "poskey setting")
 
@@ -8,4 +8,7 @@
 ![poskey3](https://github.com/gpctv/MSH/blob/master/posDocument/pos3.jpg "poskey setting3")
 
 #### pos 日結畫面
+![poskey4](https://github.com/gpctv/MSH/blob/master/posDocument/pos4.jpg "poskey setting4")
+
+#### pos ITEM 銷售統計畫面
 ![poskey4](https://github.com/gpctv/MSH/blob/master/posDocument/pos4.jpg "poskey setting4")
