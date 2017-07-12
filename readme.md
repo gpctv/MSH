@@ -11,4 +11,4 @@
 ![poskey4](https://github.com/gpctv/MSH/blob/master/posDocument/pos4.jpg "poskey setting4")
 
 #### pos ITEM 銷售統計畫面
-![poskey4](https://github.com/gpctv/MSH/blob/master/posDocument/pos4.jpg "poskey setting4")
+![poskey4](https://github.com/gpctv/MSH/blob/master/posDocument/pos5.jpg?raw=true "poskey setting5")
